@@ -1,34 +1,65 @@
 // ==========================================
-// 1. SISTEMA DE NAVEGACIÓN (TABS)
+// 1. TEMA OSCURO (DARK MODE) Y NAVEGACIÓN
 // ==========================================
+const themeToggleBtn = document.getElementById('theme-toggle');
+const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+// Configuración inicial de íconos
+if (document.documentElement.classList.contains('dark')) {
+    themeToggleLightIcon.classList.remove('hidden');
+} else {
+    themeToggleDarkIcon.classList.remove('hidden');
+}
+
+// Lógica de cambio de tema
+themeToggleBtn.addEventListener('click', function () {
+    themeToggleDarkIcon.classList.toggle('hidden');
+    themeToggleLightIcon.classList.toggle('hidden');
+
+    if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+    }
+});
+
+// Forzar Modo Claro al abrir el diálogo de impresión (Ahorro de tinta)
+window.addEventListener('beforeprint', () => {
+    if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-tema-temporal', 'true');
+    }
+});
+window.addEventListener('afterprint', () => {
+    if (document.documentElement.getAttribute('data-tema-temporal') === 'true') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.removeAttribute('data-tema-temporal');
+    }
+});
+
+// Navegación (Tabs) actualizadas para soportar las clases Dark
 const btnCalculadora = document.getElementById('btn-calculadora');
 const btnLeyes = document.getElementById('btn-leyes');
 const vistaCalculadora = document.getElementById('vista-calculadora');
 const vistaLeyes = document.getElementById('vista-leyes');
 
 btnCalculadora.addEventListener('click', () => {
-    // Mostrar calculadora
     vistaCalculadora.classList.remove('hidden');
     vistaLeyes.classList.add('hidden');
-    // Activar botón
-    btnCalculadora.classList.add('border-blue-600', 'text-blue-600');
-    btnCalculadora.classList.remove('border-transparent', 'text-gray-500');
-    // Desactivar el otro
-    btnLeyes.classList.remove('border-blue-600', 'text-blue-600');
-    btnLeyes.classList.add('border-transparent', 'text-gray-500');
+    btnCalculadora.className = "tab-btn active-tab px-4 py-1.5 text-sm font-semibold rounded-md transition-all duration-200 bg-white dark:bg-slate-700 shadow-sm text-blue-600 dark:text-blue-400 border border-slate-200/50 dark:border-slate-600";
+    btnLeyes.className = "tab-btn px-4 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 border border-transparent";
 });
 
 btnLeyes.addEventListener('click', () => {
-    // Mostrar leyes
     vistaLeyes.classList.remove('hidden');
     vistaCalculadora.classList.add('hidden');
-    // Activar botón
-    btnLeyes.classList.add('border-blue-600', 'text-blue-600');
-    btnLeyes.classList.remove('border-transparent', 'text-gray-500');
-    // Desactivar el otro
-    btnCalculadora.classList.remove('border-blue-600', 'text-blue-600');
-    btnCalculadora.classList.add('border-transparent', 'text-gray-500');
+    btnLeyes.className = "tab-btn active-tab px-4 py-1.5 text-sm font-semibold rounded-md transition-all duration-200 bg-white dark:bg-slate-700 shadow-sm text-blue-600 dark:text-blue-400 border border-slate-200/50 dark:border-slate-600";
+    btnCalculadora.className = "tab-btn px-4 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 border border-transparent";
 });
+
 
 // ==========================================
 // 2. LÓGICA DE CÁLCULO SALARIAL
@@ -38,7 +69,7 @@ const formatoDinero = new Intl.NumberFormat('en-US', {
     currency: 'USD'
 });
 
-document.getElementById('calcForm').addEventListener('submit', function(e) {
+document.getElementById('calcForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
     // Obtener Valores
@@ -47,7 +78,7 @@ document.getElementById('calcForm').addEventListener('submit', function(e) {
     const fechaInicio = new Date(document.getElementById('fechaInicio').value);
     const hoy = new Date();
 
-    if(fechaInicio > hoy) {
+    if (fechaInicio > hoy) {
         alert("La fecha de inicio no puede ser mayor a la fecha actual.");
         return;
     }
@@ -55,7 +86,7 @@ document.getElementById('calcForm').addEventListener('submit', function(e) {
     // --- NUEVO: CÁLCULOS POR HORA Y EXTRAS (Según multiplicadores de la imagen) ---
     const salarioDiario = salario / 30;
     const salarioHora = salarioDiario / 8; // Asumiendo jornada diurna de 8 hrs
-    
+
     const heDiurna = salarioHora * 2.00;
     const heNocturna = salarioHora * 2.25;
     const heLibreDiurna = salarioHora * 1.50;
@@ -102,14 +133,14 @@ document.getElementById('calcForm').addEventListener('submit', function(e) {
     if (tiempo === "menos_1") {
         const diffTime = Math.abs(hoy - fechaInicio);
         const diasTrabajados = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-        const diasCalculo = Math.min(diasTrabajados, 365); 
+        const diasCalculo = Math.min(diasTrabajados, 365);
         aguinaldoBruto = (cuotaDiaria * 15 / 365) * diasCalculo;
         notaAguinaldo = `Proporcional (${diasCalculo} días)`;
     } else {
         if (tiempo === "1_a_3") diasAguinaldo = 15;
         else if (tiempo === "3_a_10") diasAguinaldo = 19;
         else if (tiempo === "10_mas") diasAguinaldo = 21;
-        
+
         aguinaldoBruto = cuotaDiaria * diasAguinaldo;
         notaAguinaldo = `Correspondiente a ${diasAguinaldo} días`;
     }
@@ -122,7 +153,13 @@ document.getElementById('calcForm').addEventListener('submit', function(e) {
     // ==========================================
     // RENDERIZAR RESULTADOS
     // ==========================================
-    document.getElementById('resultados').classList.remove('hidden');
+    const resultados = document.getElementById('resultados');
+    resultados.classList.remove('hidden');
+
+    // Animar las tarjetas al calcular
+    resultados.classList.remove('animate-fade-in-up');
+    void resultados.offsetWidth; // Forzar repintado
+    resultados.classList.add('animate-fade-in-up');
 
     // SET: Desglose Diario/Hora (NUEVO)
     document.getElementById('r_diario').textContent = formatoDinero.format(salarioDiario);
@@ -158,7 +195,7 @@ document.getElementById('calcForm').addEventListener('submit', function(e) {
     // ==========================================
     // DATOS PARA LA BOLETA DE IMPRESIÓN
     // ==========================================
-    
+
     // 1. Inyectar Fecha de Ingreso (Mejorada con formato Latino/Europeo DD/MM/YYYY)
     const fechaInput = document.getElementById('fechaInicio').value;
     if (fechaInput) {
@@ -174,6 +211,6 @@ document.getElementById('calcForm').addEventListener('submit', function(e) {
     // 2. Generar Fecha y Hora Actual de la impresión (Estilo: 21/7/26, 11:02)
     const fechaImpresion = hoy.toLocaleDateString('es-SV', { day: 'numeric', month: 'numeric', year: '2-digit' });
     const horaImpresion = hoy.toLocaleTimeString('es-SV', { hour: '2-digit', minute: '2-digit', hour12: false });
-    
+
     document.getElementById('print_datetime').textContent = `${fechaImpresion}, ${horaImpresion}`;
 });
