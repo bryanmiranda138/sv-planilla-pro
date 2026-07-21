@@ -1,0 +1,44 @@
+/* Estilos para el estado activo de los botones del Navbar */
+.tab-btn.active-tab {
+    border-bottom-color: #2563eb; 
+    color: #2563eb;
+}
+
+/* ========================================== */
+/* ESTILOS DE IMPRESIÓN PROFESIONALES         */
+/* ========================================== */
+@media print {
+    /* Ocultar formulario, navbar y elementos innecesarios */
+    .no-print { 
+        display: none !important; 
+    }
+    
+    /* Fondo blanco puro para la hoja */
+    body { 
+        background-color: white !important; 
+    }
+    
+    /* ELIMINAR el gran borde exterior que encierra todo el documento y se rompe */
+    .print-shadow-none { 
+        box-shadow: none !important; 
+        border: none !important; /* Esto elimina el borde gigante de tu imagen */
+    }
+
+    /* CLASE MÁGICA: Evita que las tarjetas se corten a la mitad entre páginas */
+    .evitar-quiebre {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    /* Forzar al navegador a imprimir los colores de fondo de Tailwind */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+    
+    /* Ajustar los márgenes de la hoja A4 */
+    @page {
+        margin: 1.2cm;
+    }
+}

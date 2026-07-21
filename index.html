@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Salario - El Salvador</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
+
+    <nav class="bg-white shadow-md no-print sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <div
+                        class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                        SV
+                    </div>
+                    <span class="font-bold text-xl text-gray-800">Planilla<span class="text-blue-600">Pro</span></span>
+                </div>
+
+                <div class="flex space-x-4">
+                    <button id="btn-calculadora"
+                        class="tab-btn active-tab px-3 py-2 text-sm font-medium transition-colors border-b-2 border-blue-600 text-blue-600">
+                        Cálculo Salarial
+                    </button>
+                    <button id="btn-leyes"
+                        class="tab-btn px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent text-gray-500 hover:text-blue-600 hover:border-blue-300">
+                        Leyes de El Salvador
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow p-4 md:p-8 max-w-6xl mx-auto w-full">
+
+        <div id="vista-calculadora" class="bg-white rounded-xl shadow-lg overflow-hidden print-shadow-none">
+
+            <div class="grid grid-cols-1 md:grid-cols-3">
+                <div class="p-6 bg-gray-50 border-r border-gray-200 no-print">
+                    <h2 class="text-lg font-semibold mb-4 text-blue-600">Ingresa tus datos</h2>
+
+                    <form id="calcForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Salario Mensual Bruto
+                                ($)</label>
+                            <input type="number" id="salario" required min="1" step="0.01" placeholder="Ej. 840.00"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tiempo en la empresa</label>
+                            <select id="tiempo"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                <option value="menos_1">Menos de un año</option>
+                                <option value="1_a_3">1 a 3 años</option>
+                                <option value="3_a_10">3 a 10 años</option>
+                                <option value="10_mas">10 o más años</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Fecha de inicio de
+                                labores</label>
+                            <input type="date" id="fechaInicio" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">
+                            CALCULAR
+                        </button>
+
+                        <button type="button" onclick="window.print()"
+                            class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition mt-2">
+                            Imprimir Reporte
+                        </button>
+                    </form>
+                </div>
+
+                <div class="p-6 col-span-2 hidden print:p-0" id="resultados">
+                
+                <div class="hidden print:block w-full mb-10 evitar-quiebre">
+                    <div class="flex justify-between items-center text-[11px] text-black font-sans mb-6">
+                        <span id="print_datetime"></span>
+                        <span>SV - PlanillaPro - El Salvador</span>
+                    </div>
+                    
+                    <div class="text-center flex flex-col items-center justify-center">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white mb-2 print:shadow-none">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        </div>
+                        <h1 class="text-3xl font-extrabold text-black uppercase tracking-wide mb-1">SV-PlanillaPro</h1>
+                        <p class="text-lg text-gray-800 mb-8">Calculadora de Salario</p>
+                        <p class="text-base text-black font-bold">
+                            Fecha de Ingreso a la Empresa: <span id="print_fecha_ingreso" class="font-normal text-gray-800"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-gray-800 print:hidden">Reporte Salarial</h2>
+                
+                <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm mb-6 print:shadow-none evitar-quiebre">
+                    <h3 class="font-bold text-blue-600 mb-3 border-b pb-1">Desglose de Salario y Horas Extra</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                            <span class="block text-xs text-gray-500 font-semibold mb-1">Salario diario</span>
+                            <span class="block text-xl font-bold text-gray-800 mb-1" id="r_diario"></span>
+                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded font-medium">Mensual / 30</span>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                            <span class="block text-xs text-gray-500 font-semibold mb-1">Salario por hora</span>
+                            <span class="block text-xl font-bold text-gray-800 mb-1" id="r_hora"></span>
+                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded font-medium">x 1.00 (base)</span>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                            <span class="block text-xs text-gray-500 font-semibold mb-1">Hora extra diurna (o feriado)</span>
+                            <span class="block text-xl font-bold text-green-600 mb-1" id="r_he_diurna"></span>
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded font-medium">x 2.00</span>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                            <span class="block text-xs text-gray-500 font-semibold mb-1">Hora extra nocturna</span>
+                            <span class="block text-xl font-bold text-green-600 mb-1" id="r_he_nocturna"></span>
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded font-medium">x 2.25</span>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                            <span class="block text-xs text-gray-500 font-semibold mb-1">Hora extra en día libre - diurna</span>
+                            <span class="block text-xl font-bold text-green-600 mb-1" id="r_he_libre_diurna"></span>
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded font-medium">x 1.50</span>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                            <span class="block text-xs text-gray-500 font-semibold mb-1">Hora extra día libre - nocturna</span>
+                            <span class="block text-xl font-bold text-green-600 mb-1" id="r_he_libre_nocturna"></span>
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded font-medium">x 1.75</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6 evitar-quiebre">
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm print:shadow-none">
+                        <h3 class="font-bold text-blue-600 mb-2 border-b pb-1">Cálculo Mensual</h3>
+                        <div class="space-y-1 text-sm">
+                            <div class="flex justify-between"><span class="text-gray-600">Salario Bruto:</span> <span class="font-medium" id="r_bruto_m"></span></div>
+                            <div class="flex justify-between text-red-600"><span>ISSS (3%):</span> <span id="r_isss_m"></span></div>
+                            <div class="flex justify-between text-red-600"><span>AFP (7.25%):</span> <span id="r_afp_m"></span></div>
+                            <div class="flex justify-between text-red-600"><span>Renta:</span> <span id="r_renta_m"></span></div>
+                            <div class="flex justify-between border-t pt-1 font-semibold"><span>Total Descuentos:</span> <span class="text-red-600" id="r_desc_m"></span></div>
+                            <div class="flex justify-between border-t pt-1 font-bold text-green-600 text-base mt-2"><span>Líquido Mensual:</span> <span id="r_liquido_m"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm print:shadow-none">
+                        <h3 class="font-bold text-blue-600 mb-2 border-b pb-1">Cálculo Quincenal</h3>
+                        <div class="space-y-1 text-sm">
+                            <div class="flex justify-between"><span class="text-gray-600">Salario Bruto:</span> <span class="font-medium" id="r_bruto_q"></span></div>
+                            <div class="flex justify-between text-red-600"><span>ISSS:</span> <span id="r_isss_q"></span></div>
+                            <div class="flex justify-between text-red-600"><span>AFP:</span> <span id="r_afp_q"></span></div>
+                            <div class="flex justify-between text-red-600"><span>Renta:</span> <span id="r_renta_q"></span></div>
+                            <div class="flex justify-between border-t pt-1 font-semibold"><span>Total Descuentos:</span> <span class="text-red-600" id="r_desc_q"></span></div>
+                            <div class="flex justify-between border-t pt-1 font-bold text-green-600 text-base mt-2"><span>Líquido Quincena:</span> <span id="r_liquido_q"></span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 evitar-quiebre">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 print:shadow-none">
+                        <h3 class="font-bold text-gray-700 mb-2">Aportes Patronales</h3>
+                        <div class="space-y-1 text-sm">
+                            <div class="flex justify-between"><span>ISSS Patronal (7.5%):</span> <span class="font-medium" id="r_isss_pat"></span></div>
+                            <div class="flex justify-between"><span>AFP Patronal (8.75%):</span> <span class="font-medium" id="r_afp_pat"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 print:shadow-none">
+                        <h3 class="font-bold text-blue-800 mb-2">Prestaciones de Ley</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between items-center border-b border-blue-100 pb-1">
+                                <div>
+                                    <span class="font-semibold block">Aguinaldo</span>
+                                    <span class="text-xs text-blue-600" id="nota_aguinaldo"></span>
+                                </div>
+                                <span class="font-bold text-green-700" id="r_aguinaldo"></span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center border-b border-blue-100 pb-1">
+                                <div>
+                                    <span class="font-semibold block">Vacación Anual</span>
+                                    <span class="text-xs text-blue-600">15 días + 30% prima</span>
+                                </div>
+                                <span class="font-bold text-green-700" id="r_vacacion"></span>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-1">
+                                <div>
+                                    <span class="font-semibold block">Quincena 25</span>
+                                    <span class="text-xs text-blue-600">Solo en Enero*</span>
+                                </div>
+                                <span class="font-bold text-green-700" id="r_q25"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+
+            <div id="vista-leyes" class="hidden bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Marco Legal (El Salvador)</h2>
+
+                <div class="space-y-6">
+                    <section>
+                        <h3 class="text-lg font-bold text-blue-600 mb-2">Descuentos de Ley</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                            <li><strong>ISSS (Seguro Social):</strong> Empleado aporta 3%, Patrono 7.5%. Límite máximo
+                                cotizable: $1,000.</li>
+                            <li><strong>AFP (Pensiones):</strong> Empleado aporta 7.25%, Patrono 8.75%. Techo salarial
+                                de
+                                $7,045.06 (según última reforma).</li>
+                            <li><strong>Renta (ISR):</strong> Calculado sobre el salario gravado (Salario - ISSS - AFP)
+                                aplicando los 4 tramos establecidos por el Ministerio de Hacienda.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3 class="text-lg font-bold text-blue-600 mb-2">Prestaciones Anuales</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                            <li><strong>Vacaciones:</strong> Derecho a 15 días de salario más una prima del 30%
+                                adicional
+                                sobre esos 15 días (Art. 177, Código de Trabajo).</li>
+                            <li><strong>Aguinaldo:</strong> 1 a 3 años = 15 días | 3 a 10 años = 19 días | 10+ años = 21
+                                días (Art. 198, Código de Trabajo).</li>
+                            <li><strong>Quincena 25:</strong> Beneficio extra-ley (corporativo) que otorgan algunas
+                                empresas
+                                usualmente en el mes de Enero.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3 class="text-lg font-bold text-blue-600 mb-2">Cálculo de Horas Extras (Código de Trabajo)
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-2">Para el cálculo estándar se asume una jornada diurna de 8
+                            horas diarias y un mes de 30 días.</p>
+                        <div class="bg-gray-100 p-4 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <span class="block font-semibold">Hora Extra Diurna</span>
+                                <span class="text-sm text-gray-600">Salario base por hora × 2.00</span>
+                            </div>
+                            <div>
+                                <span class="block font-semibold">Hora Extra Nocturna</span>
+                                <span class="text-sm text-gray-600">Salario base por hora × 2.25</span>
+                            </div>
+                            <div>
+                                <span class="block font-semibold">Hora Extra Día Libre (Diurna)</span>
+                                <span class="text-sm text-gray-600">Salario base por hora × 1.50</span>
+                            </div>
+                            <div>
+                                <span class="block font-semibold">Hora Extra Día Libre (Nocturna)</span>
+                                <span class="text-sm text-gray-600">Salario base por hora × 1.75</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
