@@ -42,12 +42,6 @@ La lógica de JavaScript de este proyecto fue programada siguiendo el Código de
 * **Ministerio de Hacienda:** Tablas de retención mensual y quincenal del ISR.
 
 ---
-## 👨‍💻 Autor
-Ing. Bryan Andres Candelario Miranda
-* * **📧 Correo:**  bryan.miranda138@gmail.com
- 
-Si este proyecto te pareció útil o interesante, ¡no olvides dejarle una ⭐ estrella en el repositorio!
----
 ## ⚙️ Instalación y Uso Local
 
 Al ser un proyecto estático sin servidor backend (Node.js/PHP), no necesitas instalar dependencias ni usar NPM.
@@ -55,3 +49,12 @@ Al ser un proyecto estático sin servidor backend (Node.js/PHP), no necesitas in
 1. Clona este repositorio:
    ```bash
    git clone [https://github.com/bryanmiranda138/sv-planilla-pro.git](https://github.com/bryanmiranda138/sv-planilla-pro.git)
+
+---
+## 👨‍💻 Autor
+Ing. Bryan Andres Candelario Miranda
+* **📧 Correo:**  bryan.miranda138@gmail.com
+
+ 
+Si este proyecto te pareció útil o interesante, ¡no olvides dejarle una ⭐ estrella en el repositorio!
+---
