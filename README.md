@@ -44,8 +44,6 @@ La lógica de JavaScript de este proyecto fue programada siguiendo el Código de
 ---
 ## 👨‍💻 Autor
 Ing. Bryan Andres Candelario Miranda
-* **💼 LinkedIn** 
-* * **📱 WhatsApp**
 * * **📧 Correo:**  bryan.miranda138@gmail.com
  
 Si este proyecto te pareció útil o interesante, ¡no olvides dejarle una ⭐ estrella en el repositorio!
