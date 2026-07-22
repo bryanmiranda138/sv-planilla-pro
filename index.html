@@ -6,21 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="EXMx_YvX03u3U_n7xM7Vs4oqEvI1vTugSuolMJBhR2w" />
     <title>Sueldo-SV | Calculadora de Salario y Planilla de El Salvador</title>
-    
-    <meta name="description" content="Calculadora exacta de salario líquido, descuentos de ley (ISSS, AFP, Renta), horas extras, aguinaldo y vacaciones según el Código de Trabajo de El Salvador.">
-    
-    <meta name="keywords" content="calculadora de salario el salvador, sueldo sv, descuentos de ley el salvador, calcular isss afp renta, horas extras el salvador, aguinaldo, vacaciones, planilla el salvador">
-    
+
+    <meta name="description"
+        content="Calculadora exacta de salario líquido, descuentos de ley (ISSS, AFP, Renta), horas extras, aguinaldo y vacaciones según el Código de Trabajo de El Salvador.">
+
+    <meta name="keywords"
+        content="calculadora de salario el salvador, sueldo sv, descuentos de ley el salvador, calcular isss afp renta, horas extras el salvador, aguinaldo, vacaciones, planilla el salvador">
+
     <meta name="author" content="Ing. Bryan Andres Candelario Miranda">
-    <meta name="robots" content="index, follow"> <meta property="og:title" content="Sueldo-SV | Calculadora de Salario">
-    <meta property="og:description" content="Calcula tu salario líquido y prestaciones de ley en El Salvador de forma rápida y exacta.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Sueldo-SV | Calculadora de Salario">
+    <meta property="og:description"
+        content="Calcula tu salario líquido y prestaciones de ley en El Salvador de forma rápida y exacta.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sueldo-sv.netlify.app/"> <meta property="og:image" content="https://sueldo-sv.netlify.app/ico.png"> <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="https://sueldo-sv.netlify.app/">
+    <meta property="og:image" content="https://sueldo-sv.netlify.app/ico.png">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Sueldo-SV | Calculadora Laboral">
     <meta name="twitter:description" content="Calculadora gratuita de salarios, AFP, ISSS y Renta para El Salvador.">
 
     <link rel="icon" href="ico.png" type="image/png">
-    
+
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
@@ -34,17 +40,26 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
 
 <body
     class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col selection:bg-blue-200 selection:text-blue-900 transition-colors duration-300">
 
     <div
-        class="top-header header-top-header bg-black text-white py-2 no-print overflow-hidden w-full text-sm font-medium">
-        <p class="marquee">
-            <span><a href="#" class="hover:underline">Calculadora de salarios de El Salvador con reportería
-                    incluida</a></span>
+        class="top-header header-top-header bg-black text-white py-2 no-print overflow-hidden w-full text-sm font-medium flex items-center">
+        <p class="marquee m-0 p-0 leading-none">
+            <span class="inline-flex items-center gap-2">
+                <img src="https://flagcdn.com/w20/sv.png" alt="Bandera SV"
+                    class="w-5 h-auto rounded-sm flex-shrink-0" />
+                <a href="#" class="hover:underline">Calculadora de salarios de El Salvador con reportería incluida</a>
+                <img src="https://flagcdn.com/w20/sv.png" alt="Bandera SV"
+                    class="w-5 h-auto rounded-sm flex-shrink-0" />
+            </span>
         </p>
     </div>
 

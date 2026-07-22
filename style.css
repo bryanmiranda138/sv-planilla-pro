@@ -3,16 +3,19 @@
 /* ========================================== */
 .marquee {
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
     white-space: nowrap;
     overflow: hidden;
     box-sizing: border-box;
+    line-height: 1;
 }
 
 .marquee span {
-    display: inline-block;
-    padding-left: 100%;  /* El texto empieza escondido al borde derecho */
-    animation: scroll-left 20s linear infinite; /* 20s es la velocidad, ajústala a tu gusto */
+    display: inline-flex;
+    align-items: center;
+    padding-left: 100%;
+    animation: scroll-left 20s linear infinite;
 }
 
 /* Pausar el movimiento al pasar el mouse por encima */
