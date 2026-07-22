@@ -32,7 +32,24 @@ Este proyecto fue construido priorizando el rendimiento, la ligereza y la ausenc
 * **Animaciones:** Animaciones personalizadas con `@keyframes` en CSS puro (`style.css`).
 
 ---
+## 📚 Base Legal (El Salvador)
 
+La lógica de JavaScript de este proyecto fue programada siguiendo el Código de Trabajo vigente en El Salvador:
+
+* **Art. 177:** Cálculo de prima por vacaciones (30%).
+* **Art. 198:** Días correspondientes de aguinaldo según antigüedad.
+* **Reformas SAP 28 de septiembre 2017:** Tasas de retención de Administradoras de Fondos de Pensiones (AFP).
+* **Ministerio de Hacienda:** Tablas de retención mensual y quincenal del ISR.
+
+---
+## 👨‍💻 Autor
+Ing. Bryan Andres Candelario Miranda
+* **💼 LinkedIn** 
+* * **📱 WhatsApp**
+* * **📧 Correo:**  bryan.miranda138@gmail.com
+ 
+Si este proyecto te pareció útil o interesante, ¡no olvides dejarle una ⭐ estrella en el repositorio!
+---
 ## ⚙️ Instalación y Uso Local
 
 Al ser un proyecto estático sin servidor backend (Node.js/PHP), no necesitas instalar dependencias ni usar NPM.
