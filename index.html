@@ -83,14 +83,22 @@
 
                 <div class="flex items-center gap-4">
                     <div
-                        class="flex space-x-1 bg-slate-100/50 dark:bg-slate-900/50 p-1 rounded-lg border border-slate-200 dark:border-slate-700">
+                        class="flex space-x-1 bg-slate-100/50 dark:bg-slate-900/50 p-1 rounded-lg border border-slate-200 dark:border-slate-700 overflow-x-auto">
                         <button id="btn-calculadora"
-                            class="tab-btn active-tab px-4 py-1.5 text-sm font-semibold rounded-md transition-all duration-200 bg-white dark:bg-slate-700 shadow-sm text-blue-600 dark:text-blue-400 border border-slate-200/50 dark:border-slate-600">
+                            class="tab-btn active-tab px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-md transition-all duration-200 bg-white dark:bg-slate-700 shadow-sm text-blue-600 dark:text-blue-400 border border-slate-200/50 dark:border-slate-600 whitespace-nowrap">
                             Cálculo Salarial
                         </button>
                         <button id="btn-leyes"
-                            class="tab-btn px-4 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 border border-transparent">
+                            class="tab-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 border border-transparent whitespace-nowrap">
                             Leyes (SV)
+                        </button>
+                        <button id="btn-contacto"
+                            class="tab-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 border border-transparent whitespace-nowrap">
+                            Contacto
+                        </button>
+                        <button id="btn-privacidad"
+                            class="tab-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 border border-transparent whitespace-nowrap">
+                            Privacidad
                         </button>
                     </div>
 
@@ -759,6 +767,151 @@
             </div>
         </div>
 
+        <div id="vista-contacto"
+            class="hidden bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none p-6 md:p-8 border border-slate-100 dark:border-slate-700 transition-colors duration-300">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-8">
+                    <div
+                        class="w-12 h-12 mx-auto bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center mb-3 border border-blue-200/50 dark:border-blue-800/50">
+                        <i class="bi bi-envelope-paper text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold text-slate-800 dark:text-slate-100 tracking-tight">Ponte en
+                        Contacto</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                        ¿Tienes dudas sobre los cálculos, sugerencias o consultas comerciales? Escríbenos directamente.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <a href="mailto:bryan.miranda138@gmail.com"
+                        class="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-4 hover:border-blue-500 transition-all">
+                        <div class="p-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg">
+                            <i class="bi bi-envelope-at text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-semibold text-slate-400 uppercase">Correo Electrónico</span>
+                            <span
+                                class="text-sm font-bold text-slate-800 dark:text-slate-100">bryan.miranda138@gmail.com</span>
+                        </div>
+                    </a>
+
+                    <a href="https://wa.me/50378906377" target="_blank"
+                        class="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-4 hover:border-green-500 transition-all">
+                        <div
+                            class="p-3 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg">
+                            <i class="bi bi-whatsapp text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-semibold text-slate-400 uppercase">WhatsApp Directo</span>
+                            <span class="text-sm font-bold text-slate-800 dark:text-slate-100">+503 7890-6377</span>
+                        </div>
+                    </a>
+                </div>
+
+                <form name="Contacto Portafolio" method="POST" data-netlify="true"
+                    class="space-y-4 bg-slate-50 dark:bg-slate-900/30 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+
+                    <input type="hidden" name="form-name" value="Contacto Portafolio" />
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Tu Nombre
+                            Completo</label>
+                        <input type="text" name="Nombre" required placeholder="Ej. Juan Pérez"
+                            class="w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Correo
+                            Electrónico de Respuesta</label>
+                        <input type="email" name="Correo" required placeholder="ejemplo@correo.com"
+                            class="w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Mensaje o
+                            Consulta</label>
+                        <textarea name="Mensaje" rows="4" required placeholder="Escribe aquí tu consulta..."
+                            class="w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg text-sm transition-all shadow-md shadow-blue-500/20">
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="vista-privacidad"
+            class="hidden bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none p-6 md:p-8 border border-slate-100 dark:border-slate-700 transition-colors duration-300 text-slate-700 dark:text-slate-300 leading-relaxed text-sm space-y-6">
+
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
+                <h2 class="text-2xl font-extrabold text-slate-800 dark:text-slate-100 tracking-tight">Política de
+                    Privacidad</h2>
+                <p class="text-xs text-slate-400 mt-1">Última actualización: Julio de 2026</p>
+            </div>
+
+            <p>
+                En <strong>Sueldo-SV</strong> (accesible desde nuestra web), la privacidad de nuestros visitantes es una
+                de nuestras principales prioridades. Este documento de Política de Privacidad contiene los tipos de
+                información que recopila y registra <strong>Sueldo-SV</strong> y cómo la utilizamos.
+            </p>
+
+            <section class="space-y-2">
+                <h3 class="text-base font-bold text-slate-800 dark:text-slate-100">1. Tratamiento de Datos Salariales y
+                    Almacenamiento Local</h3>
+                <p>
+                    <strong>Sueldo-SV es una herramienta de cálculo cliente (Front-End)</strong>. Toda la información
+                    introducida en los campos de formulario (como salarios brutos, fechas de ingreso y tiempo laborado)
+                    se procesa localmente en el navegador del usuario a través de JavaScript. <strong>No almacenamos,
+                        transmitimos ni vendemos datos financieros personales en servidores externos.</strong>
+                </p>
+            </section>
+
+            <section class="space-y-2">
+                <h3 class="text-base font-bold text-slate-800 dark:text-slate-100">2. Cookies de Google AdSense y Redes
+                    de Anuncios</h3>
+                <p>
+                    Google es uno de los proveedores de terceros en nuestro sitio. También utiliza cookies, conocidas
+                    como cookies de DART, para publicar anuncios a los visitantes de nuestro sitio en función de su
+                    visita a nuestra plataforma y a otros sitios en Internet.
+                </p>
+                <ul class="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-400">
+                    <li>Google, como proveedor de terceros, utiliza cookies para publicar anuncios en
+                        <strong>Sueldo-SV</strong>.
+                    </li>
+                    <li>El uso de la cookie de DART permite a Google y a sus socios mostrar anuncios basados en las
+                        visitas realizadas por los usuarios a este u otros sitios web.</li>
+                    <li>Los usuarios pueden inhabilitar el uso de la cookie de DART consultando la Política de
+                        Privacidad de la red de anuncios y de contenido de Google en la siguiente URL: <a
+                            href="https://policies.google.com/technologies/ads" target="_blank"
+                            class="text-blue-600 dark:text-blue-400 underline">https://policies.google.com/technologies/ads</a>.
+                    </li>
+                </ul>
+            </section>
+
+            <section class="space-y-2">
+                <h3 class="text-base font-bold text-slate-800 dark:text-slate-100">3. Archivos de Registro (Log Files)
+                </h3>
+                <p>
+                    Sueldo-SV sigue un procedimiento estándar de uso de archivos de registro. Estos archivos registran a
+                    los visitantes cuando visitan sitios web. Las empresas de alojamiento (como Netlify) realizan esto
+                    como parte de la analítica de los servicios de hosting. La información recopilada incluye
+                    direcciones de protocolo de Internet (IP), tipo de navegador, proveedor de servicios de Internet
+                    (ISP), fecha y hora, páginas de referencia/salida y el número de clics.
+                </p>
+            </section>
+
+            <section class="space-y-2">
+                <h3 class="text-base font-bold text-slate-800 dark:text-slate-100">4. Derechos de Privacidad y
+                    Consentimiento</h3>
+                <p>
+                    Al utilizar nuestro sitio web, usted acepta nuestra Política de Privacidad y acepta sus términos y
+                    condiciones. Si tiene preguntas adicionales o requiere más información sobre nuestra Política de
+                    Privacidad, no dude en contactar al administrador a través de nuestro correo electrónico de
+                    contacto: <strong>bryan.miranda138@gmail.com</strong>.
+                </p>
+            </section>
+
+        </div>
+
     </main>
     <footer
         class="bg-white dark:bg-slate-800 text-center py-6 mt-auto border-t-2 border-blue-600 dark:border-blue-500 transition-colors duration-300 no-print w-full">
@@ -785,6 +938,14 @@
                     <i class="bi bi-facebook text-blue-600 dark:text-blue-400 text-base"></i> Facebook
                 </a>
             </div>
+
+            <div class="text-xs text-slate-400 flex justify-center gap-3">
+                <button onclick="mostrarVista('privacidad')" class="hover:underline hover:text-blue-500">Política de
+                    Privacidad</button>
+                <span>•</span>
+                <button onclick="mostrarVista('contacto')" class="hover:underline hover:text-blue-500">Contacto</button>
+            </div>
+
         </div>
     </footer>
 

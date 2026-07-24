@@ -40,25 +40,56 @@ window.addEventListener('afterprint', () => {
     }
 });
 
-// Navegación (Tabs) actualizadas para soportar las clases Dark
+// Elementos de Botones
 const btnCalculadora = document.getElementById('btn-calculadora');
 const btnLeyes = document.getElementById('btn-leyes');
+const btnContacto = document.getElementById('btn-contacto');
+const btnPrivacidad = document.getElementById('btn-privacidad');
+
+// Elementos de Vistas
 const vistaCalculadora = document.getElementById('vista-calculadora');
 const vistaLeyes = document.getElementById('vista-leyes');
+const vistaContacto = document.getElementById('vista-contacto');
+const vistaPrivacidad = document.getElementById('vista-privacidad');
 
-btnCalculadora.addEventListener('click', () => {
-    vistaCalculadora.classList.remove('hidden');
-    vistaLeyes.classList.add('hidden');
-    btnCalculadora.className = "tab-btn active-tab px-4 py-1.5 text-sm font-semibold rounded-md transition-all duration-200 bg-white dark:bg-slate-700 shadow-sm text-blue-600 dark:text-blue-400 border border-slate-200/50 dark:border-slate-600";
-    btnLeyes.className = "tab-btn px-4 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 border border-transparent";
-});
-
-btnLeyes.addEventListener('click', () => {
-    vistaLeyes.classList.remove('hidden');
+// Función Global para cambiar de Pestaña
+function mostrarVista(nombreVista) {
+    // Ocultar todas las vistas
     vistaCalculadora.classList.add('hidden');
-    btnLeyes.className = "tab-btn active-tab px-4 py-1.5 text-sm font-semibold rounded-md transition-all duration-200 bg-white dark:bg-slate-700 shadow-sm text-blue-600 dark:text-blue-400 border border-slate-200/50 dark:border-slate-600";
-    btnCalculadora.className = "tab-btn px-4 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 border border-transparent";
-});
+    vistaLeyes.classList.add('hidden');
+    vistaContacto.classList.add('hidden');
+    vistaPrivacidad.classList.add('hidden');
+
+    // Desactivar estilos de todos los botones
+    [btnCalculadora, btnLeyes, btnContacto, btnPrivacidad].forEach(btn => {
+        if(btn) {
+            btn.className = "tab-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 border border-transparent whitespace-nowrap";
+        }
+    });
+
+    const activeClass = "tab-btn active-tab px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-md transition-all duration-200 bg-white dark:bg-slate-700 shadow-sm text-blue-600 dark:text-blue-400 border border-slate-200/50 dark:border-slate-600 whitespace-nowrap";
+
+    // Activar la vista y el botón seleccionado
+    if (nombreVista === 'calculadora') {
+        vistaCalculadora.classList.remove('hidden');
+        btnCalculadora.className = activeClass;
+    } else if (nombreVista === 'leyes') {
+        vistaLeyes.classList.remove('hidden');
+        btnLeyes.className = activeClass;
+    } else if (nombreVista === 'contacto') {
+        vistaContacto.classList.remove('hidden');
+        btnContacto.className = activeClass;
+    } else if (nombreVista === 'privacidad') {
+        vistaPrivacidad.classList.remove('hidden');
+        btnPrivacidad.className = activeClass;
+    }
+}
+
+// Event Listeners
+btnCalculadora.addEventListener('click', () => mostrarVista('calculadora'));
+btnLeyes.addEventListener('click', () => mostrarVista('leyes'));
+btnContacto.addEventListener('click', () => mostrarVista('contacto'));
+btnPrivacidad.addEventListener('click', () => mostrarVista('privacidad'));
 
 
 // ==========================================
